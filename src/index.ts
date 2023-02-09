@@ -107,11 +107,7 @@ const main = async (): Promise<void> => {
   });
 };
 
-if (require.main === module) {
-  main().catch((error) => {
-    console.error(error);
-    process.exit(1);
-  });
-} else {
-  throw new Error(`This should be the main module.`);
-}
+main().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});

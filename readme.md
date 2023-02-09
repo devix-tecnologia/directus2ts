@@ -11,7 +11,7 @@ Forked from: https://github.com/elierotenberg/directus-typescript-gen
 ## Uso
 
 ```bash
-tsx directus2ts --host <directus-host> --token <auth-token> --typeName <nome-type> --outFile <nome-arquivo.d.ts> --simplified
+npx @devix/directus2ts --host <directus-host> --token <auth-token> --typeName <nome-type> --outFile <nome-arquivo.d.ts> --simplified
 ```
 
 <small>A opção simplified gera um arquivo menor sem muita poluição. Serve para maioria dos usos.</small>
