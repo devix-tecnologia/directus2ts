@@ -2,6 +2,7 @@
   "name": "@devix-tecnologia/directus2ts",
   "version": "1.0.0",
   "description": "Create typescript types from any directus api",
+  "private": "false",
   "main": "dist/index.js",
   "bin": {
     "directus2ts": "./dist/cli.js"
@@ -46,5 +47,8 @@
     "openapi-typescript": "^6.2.4",
     "yargs": "^17.6.2",
     "zod": "^3.20.6"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
