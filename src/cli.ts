@@ -15,6 +15,7 @@ const Argv = z.object({
   specOutFile: z.string().nullish(),
   outFile: z.string(),
   simplified: z.boolean().nullish(),
+  prefix: z.string(),
 });
 
 type Argv = z.infer<typeof Argv>;
@@ -28,10 +29,12 @@ const main = async (): Promise<void> => {
       .option(`specOutFile`, { demandOption: false, type: `string` })
       .option(`outFile`, { demandOption: true, type: `string` })
       .option(`simplified`, { demandOption: false, type: `boolean` })
+      .option(`prefix`, { demandOption: false, type: `string` })
       .help().argv
   );
 
-  const { host, token, simplified, typeName, specOutFile, outFile } = argv;
+  const { host, token, simplified, typeName, specOutFile, outFile, prefix } =
+    argv;
 
   const response = await axios.get(`${host}/server/specs/oas`, {
     headers: {
@@ -55,7 +58,7 @@ const main = async (): Promise<void> => {
   });
 
   const ts_path = resolve(process.cwd(), outFile);
-  createTsFile(typeName, baseSource, ts_path);
+  createTsFile(typeName, baseSource, ts_path, prefix);
 };
 
 main().catch((error) => {

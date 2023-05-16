@@ -37,6 +37,7 @@ export const defaultItemPattern = /^    Items([^\:]*)/;
 
 export const getExportProperties = (
   baseSource: string,
+  prefix: string,
   itemPattern: RegExp = defaultItemPattern
 ) =>
   baseSource
@@ -48,7 +49,7 @@ export const getExportProperties = (
       }
       const [, collectionName] = match;
       const propertyKey = snakeCase(collectionName);
-      return `  ${propertyKey}: components["schemas"]["Items${collectionName}"];`;
+      return `  ${propertyKey}: components["schemas"]["${prefix}${collectionName}"];`;
     })
     .filter((line): line is string => typeof line === `string`)
     .join(`\n`);
@@ -56,9 +57,10 @@ export const getExportProperties = (
 export const createTsFile = async (
   typeName: string,
   baseSource: string,
-  outputFile: string
+  outputFile: string,
+  prefix: string
 ) => {
-  const exportProperties = getExportProperties(baseSource);
+  const exportProperties = getExportProperties(baseSource, prefix);
   const exportSource = `export type ${typeName} = {\n${exportProperties}\n};`;
 
   const header = "/** \n Arquivo gerado automaticamente pelo Directus2TS \n */";
