@@ -1,6 +1,6 @@
 {
   "name": "@devix-tecnologia/directus2ts",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Create typescript types from any directus api",
   "main": "dist/index.js",
   "bin": {
