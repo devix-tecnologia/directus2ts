@@ -58,6 +58,7 @@ const main = async (): Promise<void> => {
         demandOption: false,
         type: `string`,
         description: "Optional prefix added to every collection type",
+        default: "",
       })
       .help().argv
   );
@@ -79,7 +80,7 @@ const main = async (): Promise<void> => {
 
   if (specOutFile) {
     const spec_path = resolve(process.cwd(), specOutFile);
-    writeSpecFile(spec_path, spec);
+    await writeSpecFile(spec_path, spec);
   }
 
   const baseSource = await openApiTs(spec as OpenAPI3, {
