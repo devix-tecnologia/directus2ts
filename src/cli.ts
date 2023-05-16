@@ -23,13 +23,42 @@ type Argv = z.infer<typeof Argv>;
 const main = async (): Promise<void> => {
   const argv = Argv.parse(
     await yargs(process.argv.slice(2))
-      .option(`host`, { demandOption: true, type: `string` })
-      .option(`token`, { demandOption: true, type: `string` })
-      .option(`typeName`, { demandOption: true, type: `string` })
-      .option(`specOutFile`, { demandOption: false, type: `string` })
-      .option(`outFile`, { demandOption: true, type: `string` })
-      .option(`simplified`, { demandOption: false, type: `boolean` })
-      .option(`prefix`, { demandOption: false, type: `string` })
+      .option(`host`, {
+        demandOption: true,
+        type: `string`,
+        description: "Host where the directus api is hosted",
+      })
+      .option(`token`, {
+        demandOption: true,
+        type: `string`,
+        description:
+          "Access token to the api. Typing will be based on the permissions enabled to this token.",
+      })
+      .option(`typeName`, {
+        demandOption: true,
+        type: `string`,
+        description: "Name to group all collections inside a global type",
+      })
+      .option(`specOutFile`, {
+        demandOption: false,
+        type: `string`,
+        description: "Optional path to write the OpenAPI spec file",
+      })
+      .option(`outFile`, {
+        demandOption: true,
+        type: `string`,
+        description: "Path to write the .ts output file",
+      })
+      .option(`simplified`, {
+        demandOption: false,
+        type: `boolean`,
+        description: "Simplify types by removing directus system collections",
+      })
+      .option(`prefix`, {
+        demandOption: false,
+        type: `string`,
+        description: "Optional prefix added to every collection type",
+      })
       .help().argv
   );
 
