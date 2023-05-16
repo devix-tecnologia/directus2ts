@@ -5,13 +5,13 @@ Forked from: https://github.com/elierotenberg/directus-typescript-gen
 ## Instalação
 
 ```js
-  npm i @devix/directus2ts
+  npm i @devix-tecnologia/directus2ts
 ```
 
 ## Uso
 
 ```bash
-npx @devix/directus2ts --host <directus-host> --token <auth-token> --typeName <nome-type> --outFile <nome-arquivo.d.ts> --simplified
+npx @devix-tecnologia/directus2ts --host <directus-host> --token <auth-token> --typeName <nome-type> --outFile <nome-arquivo.d.ts> --simplified
 ```
 
 <small>A opção simplified gera um arquivo menor sem muita poluição. Serve para maioria dos usos.</small>

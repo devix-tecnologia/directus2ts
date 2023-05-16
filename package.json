@@ -1,10 +1,10 @@
 {
-  "name": "@devix/directus2ts",
+  "name": "@devix-tecnologia/directus2ts",
   "version": "1.0.0",
   "description": "Gera typescript types do Directus",
   "main": "dist/index.js",
   "bin": {
-    "@devix/directus2ts": "./dist/index.js"
+    "@devix-tecnologia/directus2ts": "./dist/index.js"
   },
   "type": "module",
   "types": "./dist/types/index.d.ts",
@@ -13,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/bobse/devix_directus2ts.git"
+    "url": "https://github.com/devix-tecnologia/directus2ts"
   },
   "scripts": {
     "test": "jest --passWithNoTests",
