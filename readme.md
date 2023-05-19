@@ -6,13 +6,13 @@ Forked from: https://github.com/elierotenberg/directus-typescript-gen
 ## Installation
 
 ```bash
-  yarn add @devix-tecnologia/directus2ts
+  yarn add -D @devix-tecnologia/directus2ts
 ```
 
 ## Usage
 
 ```bash
-yarn directus2ts --host <directus-host> --token <auth-token> --typeName <group-name> --outFile <output-file.d.ts> --simplified
+yarn directus2ts --host <directus-host> --token <auth-token> --typeName <group-name> --prefix <prefix-collection> --outFile <output-file.d.ts> --simplified
 ```
 
 <small>The simplified option generates a smaller file without too much pollution. It is suitable for most uses.</small>
