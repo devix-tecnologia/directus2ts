@@ -49,7 +49,7 @@ export const getExportProperties = (
       }
       const [, collectionName] = match;
       const propertyKey = snakeCase(collectionName);
-      return `  ${propertyKey}: components["schemas"]["${prefix}${collectionName}"];`;
+      return `  ${propertyKey}: components.schemas.${prefix}${collectionName};`;
     })
     .filter((line): line is string => typeof line === `string`)
     .join(`\n`);
