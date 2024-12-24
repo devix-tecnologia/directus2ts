@@ -1,6 +1,6 @@
 {
   "name": "@devix-tecnologia/directus2ts",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Create typescript types from any directus api",
   "main": "dist/index.js",
   "bin": {
@@ -36,13 +36,13 @@
     "build:tsc": "tsc -p ./tsconfig.json",
     "prepack": "yarn build",
     "semantic-release": "semantic-release",
-    "prepublishOnly": "yarn build",  
-    "typecheck": "tsc --noEmit"  
+    "prepublishOnly": "yarn build",
+    "typecheck": "tsc --noEmit"
   },
   "author": {
     "name": "Roberto Seba",
     "organization": "Devix Tecnologia",
-    "email": "sistema@devix.co" 
+    "email": "sistema@devix.co"
   },
   "license": "MIT",
   "devDependencies": {
