@@ -21,12 +21,12 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Required for semantic-release to analyze commits
+          fetch-depth: 0  
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18.x'
+          node-version: 'lts/*'  # Usa a versão LTS mais recente automaticamente
           registry-url: 'https://registry.npmjs.org'
           cache: 'yarn'
 
