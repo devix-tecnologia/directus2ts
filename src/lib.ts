@@ -39,27 +39,28 @@ export const getExportProperties = (
   baseSource: string,
   prefix: string,
   itemPattern: RegExp = defaultItemPattern
-) =>
-  baseSource
+): string => {
+  return baseSource
     .split(`\n`)
     .map((line) => {
       const match = line.match(itemPattern);
-      if (!match) {
+      if (!match || !match[1]) {  // Check if match[1] exists
         return null;
       }
-      const [, collectionName] = match;
+      const collectionName = match[1];  // Now TypeScript knows this is a string
       const propertyKey = snakeCase(collectionName);
       return `  ${propertyKey}: components.schemas.${prefix}${collectionName};`;
     })
     .filter((line): line is string => typeof line === `string`)
     .join(`\n`);
+};
 
 export const createTsFile = async (
   typeName: string,
   baseSource: string,
   outputFile: string,
   prefix: string
-) => {
+): Promise<void> => {
   const exportProperties = getExportProperties(baseSource, prefix);
   const exportSource = `export type ${typeName} = {\n${exportProperties}\n};`;
 

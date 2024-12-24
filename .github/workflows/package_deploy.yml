@@ -1,32 +1,47 @@
-name: Publish package
+name: Publish Package
+
 on:
   push:
     branches: [ main ]
 
 permissions:
-  contents: read #  for checkout
+  contents: read  # default permission for checkout
 
 jobs:
   release:
-    permissions:
-      contents: write #  to be able to publish a GitHub release
-      issues: write #  to be able to comment on released issues
-      pull-requests: write #  to be able to comment on released pull requests
-    name: release
+    name: Build and Release
     runs-on: ubuntu-latest
+    permissions:
+      contents: write      # for creating GitHub releases
+      issues: write        # for commenting on released issues
+      pull-requests: write # for commenting on released pull requests
+      packages: write      # for publishing packages
+
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js 18
-        uses: actions/setup-node@v3
+      - name: Checkout Repository
+        uses: actions/checkout@v4
         with:
-          node-version: 18.x
+          fetch-depth: 0  # Required for semantic-release to analyze commits
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+          registry-url: 'https://registry.npmjs.org'
           cache: 'yarn'
-      - name: Install dependencies
+
+      - name: Install Dependencies
         run: yarn install --frozen-lockfile
-      - name: Build package
+        
+      - name: Type Check
+        run: yarn tsc --noEmit
+        
+      - name: Build Package
         run: yarn build
-      - name: Release package
-        run: yarn semantic-release
+        
+      - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.SEMANTIC_RELEASE_BOT_NPM_TOKEN }}
           NPM_TOKEN: ${{ secrets.SEMANTIC_RELEASE_BOT_NPM_TOKEN }}
+        run: yarn semantic-release
