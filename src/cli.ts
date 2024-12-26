@@ -23,7 +23,7 @@ const ArgSchema = z.object({
 type Args = z.infer<typeof ArgSchema>;
 
 // Configuration
-const configureYargs = () => 
+export const configureYargs = () => 
   yargs(process.argv.slice(2))
     .option('host', { demandOption: true, type: 'string', description: ArgSchema.shape.host.description })
     .option('token', { demandOption: true, type: 'string', description: ArgSchema.shape.token.description })
@@ -40,7 +40,7 @@ const configureYargs = () =>
     .help();
 
 // API Functions
-const fetchOpenApiSpec = async (host: string, token: string): Promise<any> => {
+export const fetchOpenApiSpec = async (host: string, token: string) => {
   const response = await axios.get(`${host}/server/specs/oas`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -49,7 +49,7 @@ const fetchOpenApiSpec = async (host: string, token: string): Promise<any> => {
   return response.data;
 };
 
-const processOpenApiSpec = async (
+export const processOpenApiSpec = async (
   spec: OpenAPI3,
   options: { 
     simplified?: boolean; 
@@ -84,7 +84,7 @@ const processOpenApiSpec = async (
 };
 
 // Main Function
-const main = async (): Promise<void> => {
+export const main = async (): Promise<void> => {
   try {
     const argv = ArgSchema.parse(await configureYargs().argv);
     

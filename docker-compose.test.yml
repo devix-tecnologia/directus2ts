@@ -1,0 +1,12 @@
+# docker-compose.test.yml
+services:
+  directus:
+    image: directus/directus:latest
+    ports:
+      - "8055:8055"
+    environment:
+      KEY: test-key
+      SECRET: test-secret
+      ADMIN_EMAIL: admin@test.com
+      ADMIN_PASSWORD: test123
+      INITIAL_ACCESS_TOKEN: your_token_value

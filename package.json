@@ -37,7 +37,9 @@
     "prepack": "yarn build",
     "semantic-release": "semantic-release",
     "prepublishOnly": "yarn build",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "vitest",
+    "test:integration": "vitest integration.test.ts"
   },
   "author": {
     "name": "Roberto Seba",
@@ -53,7 +55,9 @@
     "@types/yargs": "^17.0.0",
     "semantic-release": "^24.2.0",
     "tsx": "^4.19.2",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8",
+    "test:integration": "vitest integration.test.ts"
   },
   "dependencies": {
     "axios": "^1.3.2",
